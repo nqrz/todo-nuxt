@@ -1,0 +1,46 @@
+h1 {
+  @apply text-5xl md:text-6xl lg:text-7xl mb-4;
+}
+h2 {
+  @apply text-4xl md:text-5xl lg:text-6xl mb-4;
+}
+h3 {
+  @apply text-3xl md:text-4xl lg:text-5xl mb-4;
+}
+h4 {
+  @apply text-2xl md:text-3xl lg:text-4xl mb-3;
+}
+h5 {
+  @apply text-xl lg:text-2xl mb-3;
+}
+h6 {
+  @apply text-lg lg:text-xl mb-3;
+}
+
+input {
+  @apply rounded-md py-1 px-2 dark:bg-night-gray my-2
+}
+
+.btn {
+  @apply py-1 px-2 bg-pastel-pink hover:bg-pastel-gray dark:bg-night-gray dark:hover:bg-night-light transition-all
+}
+
+.btn:active {
+  transform: scale(0.9);
+}
+
+/* Transition */
+
+.slide-fade-enter-active {
+  transition: all .3s ease;
+}
+
+.slide-fade-leave-active {
+  transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+
+.slide-fade-enter,
+.slide-fade-leave-to{
+  transform: translateY(-10px);
+  opacity: 0;
+}

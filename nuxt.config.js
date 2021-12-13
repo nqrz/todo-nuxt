@@ -17,13 +17,19 @@ export default {
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' }
     ],
+    script: [
+      {
+        src: 'https://kit.fontawesome.com/0fcc578757.js'
+      }
+    ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+      { rel: 'icon', type: 'image/x-icon', href: '/icon/favicon.ico' }
+    ],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    '~/assets/css/main.css'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -35,9 +41,29 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
-    // https://go.nuxtjs.dev/tailwindcss
+    '@nuxtjs/color-mode',
+    '@nuxtjs/google-fonts',
     '@nuxtjs/tailwindcss',
   ],
+
+  // Color mode
+  colorMode: {
+    classSuffix: ''
+  },
+
+  // Google fonts
+  googleFonts: {
+    families: {
+      'Noto+Sans': {
+        wght: [400, 700],
+        ital: [400, 700]
+      }
+    }
+  },
+
+  generate: {
+    fallback: true
+  },
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
