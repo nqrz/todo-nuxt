@@ -1,5 +1,6 @@
 export const state = () => ({
-  list: []
+  list: [],
+  error: ''
 })
 
 export const mutations = {
@@ -9,6 +10,10 @@ export const mutations = {
       done: false,
       id: Date.now()
     })
+    state.error = ''
+  },
+  error (state) {
+    state.error = 'Please type something.'
   },
   remove (state, todo) {
     state.list = state.list.filter(item => item.id !== todo.id)

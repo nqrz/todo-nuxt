@@ -18,7 +18,7 @@ h6 {
 }
 
 input {
-  @apply rounded-md py-1 px-2 dark:bg-night-gray my-2
+  @apply rounded-md py-3 px-4 dark:bg-night-gray my-2
 }
 
 .btn {

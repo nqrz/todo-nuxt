@@ -67,6 +67,10 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    ['nuxt-supabase', {
+      supabaseUrl: process.env.SUPABASE_URL,
+      supabaseKey: process.env.SUPABASE_ANON_URL
+    }]
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
