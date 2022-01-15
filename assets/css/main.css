@@ -1,46 +1,99 @@
-h1 {
-  @apply text-5xl md:text-6xl lg:text-7xl mb-4;
-}
-h2 {
-  @apply text-4xl md:text-5xl lg:text-6xl mb-4;
-}
-h3 {
-  @apply text-3xl md:text-4xl lg:text-5xl mb-4;
-}
-h4 {
-  @apply text-2xl md:text-3xl lg:text-4xl mb-3;
-}
-h5 {
-  @apply text-xl lg:text-2xl mb-3;
-}
-h6 {
-  @apply text-lg lg:text-xl mb-3;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-pastel-gray dark:bg-night-black
+  }
+  
+  h1 {
+    @apply text-[2em] mb-4;
+  }
+  
+  h2 {
+    @apply text-[1.5em] mb-4;
+  }
+  
+  h3 {
+    @apply text-[1.3em] mb-4;
+  }
+  
+  h4 {
+    @apply text-[1em] mb-3;
+  }
+  
+  h5 {
+    @apply text-[0.8em] mb-3;
+  }
+  
+  h6 {
+    @apply text-[0.7em] mb-3;
+  }
+  
+  input {
+    @apply rounded-md dark:bg-night-gray py-1 px-2 focus:border-0
+  }
 }
 
-input {
-  @apply rounded-md py-3 px-4 dark:bg-night-gray my-2
+@layer components {
+  .bg-primary {
+    @apply bg-gradient-to-tr from-pastel-gray to-pastel-blue dark:from-night-black dark:to-night-purple dark:text-white
+  }
+
+  .card {
+    @apply bg-pastel-gray dark:bg-night-purple rounded-lg shadow-xl;
+  }
+
+  .btn {
+    @apply py-1 px-2 transition-all rounded-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100
+  }
+  
+  .btn-primary {
+    @apply bg-pastel-cream hover:bg-pastel-pink dark:bg-night-gray dark:hover:bg-night-light disabled:bg-opacity-0 disabled:dark:bg-opacity-0 
+  }
+
+  .btn-secondary {
+    @apply hover:bg-pastel-pink dark:hover:bg-night-gray
+  }
+  
+  .shadow-primary {
+    @apply shadow-lg shadow-pastel-cream dark:shadow-none
+  }
+
+  .done {
+    @apply line-through
+  }
 }
 
-.btn {
-  @apply py-1 px-2 bg-pastel-pink hover:bg-pastel-gray dark:bg-night-gray dark:hover:bg-night-light transition-all
-}
+@layer utilities {
+  .btn:active {
+    transform: scale(0.9);
+  }
+  
+  /* Transition */
+  
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity 0.5s;
+  }
 
-.btn:active {
-  transform: scale(0.9);
-}
+  .fade-enter,
+  .fade-leave-to {
+    opacity: 0;
+  }
 
-/* Transition */
-
-.slide-fade-enter-active {
-  transition: all .3s ease;
-}
-
-.slide-fade-leave-active {
-  transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-}
-
-.slide-fade-enter,
-.slide-fade-leave-to{
-  transform: translateY(-10px);
-  opacity: 0;
+  .slide-fade-enter-active {
+    transition: all .3s ease;
+  }
+  
+  .slide-fade-leave-active {
+    transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  }
+  
+  .slide-fade-enter,
+  .slide-fade-leave-to{
+    transform: translateY(-10px);
+    opacity: 0;
+  }
 }

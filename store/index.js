@@ -1,9 +1,22 @@
 export const state = () => ({
-  loginModal: false
+  modal: null,
+  user: null
 })
 
 export const mutations = {
-  toggleModal (state) {
-    state.loginModal = !state.loginModal
+  modalChanged(state, payload) {
+    state.modal = payload
+  },
+  userUpdate(state, payload) {
+    state.user = payload
+  }
+}
+
+export const actions = {
+  modalSubmit({ commit }, payload) {
+    commit('modalChanged', payload)
+    setTimeout(() => {
+      commit('modalChanged', null)
+    }, 8000)
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <button class="nav-link" @click="toggleColor()">
+  <button class="btn btn-secondary rounded-full" @click="toggleColor()">
     <i title="Light mode" class="fas fa-sun transition-all" v-if="$colorMode.preference == 'light'"></i>
     <i title="Dark mode" class="fas fa-moon" v-else></i>
   </button>

@@ -1,12 +1,17 @@
 const colors = require('tailwindcss/colors')
 
 module.exports = {
-  purge: [],
-  mode: 'jit',
+  content: [
+    "./components/**/*.{js,vue,ts}",
+    "./layouts/**/*.vue",
+    "./pages/**/*.vue",
+    "./plugins/**/*.{js,ts}",
+    "./nuxt.config.{js,ts}",
+  ],
   darkMode: 'class', // or 'media' or 'class'
   theme: {
     fontFamily: {
-      sans: ['Noto Sans', 'Arial', 'sans-serif']
+      sans: ['PT Sans', 'Arial', 'sans-serif']
     },
     colors: {
       transparent: 'transparent',

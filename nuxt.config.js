@@ -2,19 +2,16 @@ export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
 
-  // Target: https://go.nuxtjs.dev/config-target
-  target: 'static',
-
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'todo-nuxt',
+    title: 'Todo application with Nuxt & Supabase',
     htmlAttrs: {
       lang: 'en'
     },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      { hid: 'description', name: 'description', content: 'This is a todo application created by Nizar Baihaqi. For portofolio use.' },
       { name: 'format-detection', content: 'telephone=no' }
     ],
     script: [
@@ -43,7 +40,7 @@ export default {
   buildModules: [
     '@nuxtjs/color-mode',
     '@nuxtjs/google-fonts',
-    '@nuxtjs/tailwindcss',
+    '@nuxt/postcss8'
   ],
 
   // Color mode
@@ -54,7 +51,7 @@ export default {
   // Google fonts
   googleFonts: {
     families: {
-      'Noto+Sans': {
+      'PT+Sans': {
         wght: [400, 700],
         ital: [400, 700]
       }
@@ -66,9 +63,20 @@ export default {
   },
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [],
+  modules: [
+    ['nuxt-supabase', {
+      supabaseUrl: process.env.SUPABASE_URL,
+      supabaseKey: process.env.SUPABASE_KEY
+    }]
+  ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-  }
+    postcss: {
+      plugins: {
+        tailwindcss: {},
+        autoprefixer: {},
+      },
+    },
+  },
 }
