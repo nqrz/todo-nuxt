@@ -3,7 +3,7 @@
     <form @submit.prevent="signup" class="card grid grid-cols-5 px-3 my-1 mx-3 pt-3">
       <h2 class="text-center col-span-5">Login</h2>
       <label class="flex justify-end items-center mr-3" for="email">E-mail</label>
-      <input v-model="email" @blur="emailValidation" class="col-span-4 my-2" type="email" name="email" id="email" placeholder="example@folks.com">
+      <input v-model="email" @blur="emailValidation" class="input col-span-4 my-2" type="email" name="email" id="email" placeholder="example@folks.com">
 
       <div class="col-span-4 col-end-6 text-light-secondary dark:text-dark-secondary">
         {{ reviewer.email }}
@@ -11,7 +11,7 @@
 
       <label class="flex justify-end items-center mr-3" for="password">Password</label>
       <div class="col-span-4 my-2 w-full flex">
-        <input v-model="password" @input="passValidation" class="flex-1" :type="[ passType ? 'text' : 'password' ]" name="password" id="password">
+        <input v-model="password" @input="passValidation" class="input flex-1" :type="[ passType ? 'text' : 'password' ]" name="password" id="password">
         <span @click="togglePassType" class="btn btn-secondary rounded-full ml-1 hover:cursor-pointer">
           <i v-if="passType" class="fas fa-eye"></i>
           <i v-else class="fas fa-eye-slash"></i>

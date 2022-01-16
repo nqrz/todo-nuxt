@@ -31,20 +31,17 @@
     @apply text-[0.7em] mb-3;
   }
   
-  input {
-    @apply rounded-md dark:bg-night-gray py-1 px-2 focus:border-0
-  }
 }
 
 @layer components {
   .bg-primary {
     @apply bg-gradient-to-tr from-pastel-gray to-pastel-blue dark:from-night-black dark:to-night-purple dark:text-white
   }
-
+  
   .card {
     @apply bg-pastel-gray dark:bg-night-purple rounded-lg shadow-xl;
   }
-
+  
   .btn {
     @apply py-1 px-2 transition-all rounded-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100
   }
@@ -52,15 +49,19 @@
   .btn-primary {
     @apply bg-pastel-cream hover:bg-pastel-pink dark:bg-night-gray dark:hover:bg-night-light disabled:bg-opacity-0 disabled:dark:bg-opacity-0 
   }
-
+  
   .btn-secondary {
     @apply hover:bg-pastel-pink dark:hover:bg-night-gray
+  }
+  
+  .input {
+    @apply rounded-md dark:bg-night-gray py-1 px-2
   }
   
   .shadow-primary {
     @apply shadow-lg shadow-pastel-cream dark:shadow-none
   }
-
+  
   .done {
     @apply line-through
   }

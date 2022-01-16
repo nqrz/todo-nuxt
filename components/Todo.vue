@@ -13,7 +13,7 @@
       <img src="icon/favicon-32x32.png" alt="logo" class="w-8 spin"/>
       <p class="ml-3">Why this thing is spinning?</p>
     </figure>
-    <input class="w-full shadow-primary my-2" type="text" @keyup.enter="addTodo" v-model="text" placeholder="What todo next?">
+    <input class="input w-full shadow-primary my-2" type="text" @keyup.enter="addTodo" v-model="text" placeholder="What todo next?">
     <p v-if="!textIsValid" class="px-3 py-2">
       Type 3 characters or more.
     </p>
@@ -30,13 +30,25 @@ export default {
       loading: false
     }
   },
-  async mounted() {
-    this.getData()
+  async fetch() {
+    try {
+      this.loading = true
+      const { data: todos, error } = await this.$supabase
+        .from('todos')
+        .select('*')
+        .order('id', { ascending: true})
+      if (error) throw error
+      this.todos = todos
+    } catch (error) {
+      this.$store.dispatch('modalSubmit', error.message)
+    } finally {
+      this.loading = false
+    }
   },
   computed: {
     user() {
       return this.$store.state.user
-    }
+    },
   },
   methods: {
     textValidator() {
@@ -50,45 +62,35 @@ export default {
       try {
         this.textValidator()
         if (!this.textIsValid) return
-        const { data, error } = await this.$supabase
+        const { error } = await this.$supabase
           .from('todos')
           .insert([
             { user_id: this.user.id, task: this.text }
           ])
         if (error) throw error
         this.text = ''
-        this.getData()
+        this.$nuxt.refresh()
       } catch (error) {
         this.$store.dispatch('modalSubmit', error.message)
       }
     },
     async toggle({ id, is_complete }) {
       try {
-        const { data, error } = await this.$supabase
+        const { error } = await this.$supabase
           .from('todos')
           .update({ is_complete: !is_complete })
           .match({ id })
-        
-        // literally throw the error to the catcher
         if (error) throw error
-        
-        // get key of target todo
         const key = this.todos.findIndex(item => item.id == id)
-        
-        // remove target
         this.todos[key].is_complete = !this.todos[key].is_complete
-
-        // notice dev for successfull task
         console.log('Toggle task is success');
-
-        //the catcher
       } catch (error) {
         this.$store.dispatch('modalSubmit', error.message)
       }
     },
     async removeTodo(id) {
       try {
-        const { data, error } = await this.$supabase
+        const { error } = await this.$supabase
           .from('todos')
           .delete()
           .match({ id })
@@ -99,21 +101,6 @@ export default {
         this.$store.dispatch('modalSubmit', error.message)
       }
     },
-    async getData() {
-      try {
-        this.loading = true
-        const { data: todos, error } = await this.$supabase
-          .from('todos')
-          .select('*')
-          .order('id', { ascending: true})
-        if (error) throw error
-        this.todos = todos
-      } catch (error) {
-        this.$store.dispatch('modalSubmit', error.message)
-      } finally {
-        this.loading = false
-      }
-    }
   }
 }
 </script>
