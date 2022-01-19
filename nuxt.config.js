@@ -38,16 +38,11 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
-    '@nuxtjs/color-mode',
     '@nuxtjs/google-fonts',
     '@nuxt/postcss8'
   ],
 
-  // Color mode
-  colorMode: {
-    classSuffix: ''
-  },
-
+  
   // Google fonts
   googleFonts: {
     families: {
@@ -57,19 +52,26 @@ export default {
       }
     }
   },
-
+  
   generate: {
     fallback: true
   },
-
+  
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    '@nuxtjs/color-mode',
     ['nuxt-supabase', {
       supabaseUrl: process.env.SUPABASE_URL,
       supabaseKey: process.env.SUPABASE_KEY
     }]
   ],
-
+  
+  // Color mode
+  colorMode: {
+    globalName: '__NUXT_COLOR_MODE__',
+    classSuffix: ''
+  },
+  
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     postcss: {

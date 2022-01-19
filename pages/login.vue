@@ -1,6 +1,6 @@
 <template>
   <div class="container max-w-screen-sm mx-auto">
-    <form @submit.prevent="signup" class="card grid grid-cols-5 px-3 my-1 mx-3 pt-3">
+    <form @submit.prevent="login" class="card grid grid-cols-5 px-3 my-1 mx-3 pt-3">
       <h2 class="text-center col-span-5">Login</h2>
       <label class="flex justify-end items-center mr-3" for="email">E-mail</label>
       <input v-model="email" @blur="emailValidation" class="input col-span-4 my-2" type="email" name="email" id="email" placeholder="example@folks.com">
@@ -91,7 +91,7 @@ export default {
         this.passIsValid = true
       }
     },
-    async signup () {
+    async login () {
 
       // email and password valid
       if (this.isValid) {
