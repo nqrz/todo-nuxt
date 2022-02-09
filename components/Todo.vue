@@ -62,6 +62,13 @@ export default {
       try {
         this.textValidator()
         if (!this.textIsValid) return
+        if (!this.user) {
+          const error = {
+            message: 'Please login first'
+          }
+          this.$router.push('/login')
+          throw error
+        }
         const { error } = await this.$supabase
           .from('todos')
           .insert([

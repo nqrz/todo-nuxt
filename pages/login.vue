@@ -22,7 +22,11 @@
         {{ reviewer.password }}
       </div>
 
-      <button :disabled="!isValid" class="btn btn-primary my-2 col-end-6" type="submit" :title="[ isValid ? '' : 'Oops, keep trying' ]">
+      <button @click="skipLogin" class="btn btn-primary m-2 col-end-5">
+        {{ loading ? 'Recognizing..' : 'Skip Login' }}
+      </button>
+
+      <button :disabled="!isValid" class="btn btn-primary my-2" type="submit" :title="[ isValid ? '' : 'Oops, keep trying' ]">
         Login
       </button>
     </form>
@@ -51,7 +55,8 @@ export default {
         password: ''
       },
       emailIsValid: false,
-      passIsValid: false
+      passIsValid: false,
+      loading: false
     }
   },
   computed: {
@@ -60,6 +65,24 @@ export default {
     }
   },
   methods: {
+    async skipLogin() {
+      try {
+        this.loading = true
+        const { user, error } = await this.$supabase.auth.signIn({
+          email: 'nqrz@nizarbaihaqi.com',
+          password: 'lopolopo',
+        })
+        if (error) throw error
+        console.log(`${user.email} signin success`)
+        this.$store.dispatch('modalSubmit', `Login as ${user.email}`)
+        this.$router.push(`/`)
+      } catch (error) {
+        console.log(error.message)
+        this.$store.dispatch('modalSubmit', 'Email or password incorrect')
+      } finally {
+        this.loading = false
+      }
+    },
     togglePassType() {
       this.passType = !this.passType
     },
@@ -113,6 +136,12 @@ export default {
         console.log('Email and password is not valid');
       }
     },
+  },
+  middleware({ store, redirect }) {
+    // If the user is not logged in
+    if (store.state.user) {
+      return redirect('/')
+    }
   }
 }
 </script>

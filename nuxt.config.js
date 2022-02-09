@@ -4,7 +4,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'Todo application with Nuxt & Supabase',
+    title: 'Todo app with Nuxt & Supabase',
     htmlAttrs: {
       lang: 'en'
     },
